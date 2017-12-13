@@ -1,4 +1,4 @@
-package sk.bavaria.bavaria.service;
+package sk.bavaria.bavaria.serviceImpl;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,24 +10,22 @@ import sk.bavaria.bavaria.repository.GalleryRepository;
 import java.util.List;
 
 @Service
-public class GalleryServiceImpl implements GalleryService{
+public class GalleryServiceImpl {
 
     @Autowired
     private GalleryRepository galleryRepository;
 
-    @Override
+
     public List<CarPhoto> getAllPhotos() {
         return galleryRepository.findAll();
     }
 
-    @Override
     public void savePhoto(MultipartFile photo) throws Exception{
         CarPhoto carPhoto = new CarPhoto();
        carPhoto.setData(photo.getBytes());
         galleryRepository.save(carPhoto);
     }
 
-    @Override
     public void deletePhotoByID(long id) {
         galleryRepository.delete(id);
     }

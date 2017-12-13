@@ -14,7 +14,7 @@ public class Review {
     private Long id;
     private String nickName;
     private String message;
-    private float starValue;
+    private float rating;
     private boolean approved = false;
 
     public Long getId() {
@@ -41,12 +41,12 @@ public class Review {
         this.message = message;
     }
 
-    public float getStarValue() {
-        return starValue;
+    public float getRating() {
+        return rating;
     }
 
-    public void setStarValue(float starValue) {
-        this.starValue = starValue;
+    public void setRating(float rating) {
+        this.rating = rating;
     }
 
     public boolean isApproved() {
