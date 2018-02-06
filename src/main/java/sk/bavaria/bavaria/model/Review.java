@@ -1,9 +1,7 @@
 package sk.bavaria.bavaria.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.sql.Clob;
 
 
 @Entity(name="Review")
@@ -13,9 +11,11 @@ public class Review {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String nickName;
+    @Lob
     private String message;
     private float rating;
     private boolean approved = false;
+    private String date;
 
     public Long getId() {
         return id;
@@ -55,5 +55,12 @@ public class Review {
 
     public void setApproved(boolean approved) {
         this.approved = approved;
+    }
+
+    public String getDate() {
+        return date;
+    }
+    public void setDate(String date) {
+        this.date = date;
     }
 }

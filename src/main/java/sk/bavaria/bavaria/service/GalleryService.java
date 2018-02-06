@@ -27,9 +27,10 @@ public class GalleryService {
         return galleryService.getAllPhotos();
     }
 
-    @PostMapping("/{id}")
-    public void deletePhoto(@RequestParam(required = true) int id){
+    @PostMapping("/delete/{id}")
+    public void deletePhoto(@PathVariable(value="id") int id){
         galleryService.deletePhotoByID(id);
     }
 
 }
+

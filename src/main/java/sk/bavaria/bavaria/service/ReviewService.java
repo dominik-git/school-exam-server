@@ -18,7 +18,12 @@ public class ReviewService {
 
     @PostMapping(consumes = "application/json", produces = "application/json")
     public void saveReview(@RequestBody Review review) throws Exception {
-        reviewService.saveReview(review);
+        Review review1 = new Review();
+        review1.setNickName(review.getNickName());
+        review1.setRating(review.getRating());
+        review1.setDate(review.getDate());
+        review1.setMessage(review.getMessage());
+        reviewService.saveReview(review1);
     }
 
     @GetMapping
@@ -41,6 +46,7 @@ public class ReviewService {
 
         reviewService.approveReview(id);
     }
+
 
 
 

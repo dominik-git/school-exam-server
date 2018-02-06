@@ -12,9 +12,7 @@ public class ContactInfo {
     private String emailAddress;
     private String number1;
     private String number2;
-    private String city;
-    private String street;
-    private String postalCode;
+    private String address;
     private String openTime;
     private String closeTime;
     private String openDay;
@@ -110,27 +108,11 @@ public class ContactInfo {
         this.id = id;
     }
 
-    public String getCity() {
-        return city;
+    public String getAddress() {
+        return address;
     }
 
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getStreet() {
-        return street;
-    }
-
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
-    public String getPostalCode() {
-        return postalCode;
-    }
-
-    public void setPostalCode(String postalCode) {
-        this.postalCode = postalCode;
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

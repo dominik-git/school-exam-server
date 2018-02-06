@@ -2,6 +2,7 @@ package sk.bavaria.bavaria.service;
 
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import sk.bavaria.bavaria.model.Car;
@@ -39,6 +40,10 @@ public class CarService {
     @GetMapping(path = "/photos/{id}")
     public List<CarPhoto> photos(@PathVariable(required = true) Long id) {
         return carReporitory.findOne(id).getPhotos();
+    }
+    @GetMapping(path = "ping")
+    @Secured("ROLE_ADMIN")
+    public void pingSecure() {
     }
 
 }

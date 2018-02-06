@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import sk.bavaria.bavaria.model.User;
+import sk.bavaria.bavaria.model.Sender;
 
 
 @RestController
@@ -30,21 +30,21 @@ public class EmailService {
         this.javaMailSender = javaMailSender;
     }
 
-    public void buildEmail(User user) throws MailException {
+    public void buildEmail(Sender sender) throws MailException {
         SimpleMailMessage mail = new SimpleMailMessage();
-        mail.setFrom(user.getEmailAddress());
+        mail.setFrom(sender.getEmailAddress());
         mail.setTo("justifycontent1@gmail.com");
-        mail.setReplyTo(user.getEmailAddress());
-        mail.setSubject(user.getSubject());
-        mail.setText("from: "+ user.getEmailAddress()+"  "+user.getMessage());
+        mail.setReplyTo(sender.getEmailAddress());
+        mail.setSubject(sender.getSubject());
+        mail.setText("from: "+ sender.getEmailAddress()+"  "+ sender.getMessage());
         javaMailSender.send(mail);
     }
 
     @PostMapping(consumes = "application/json", produces = "application/json")
-    public void sendEmail(@RequestBody User user) {
+    public void sendEmail(@RequestBody Sender sender) {
         try {
-            log.debug("Sending email from {}", user.getEmailAddress());
-            this.buildEmail(user);
+            log.debug("Sending email from {}", sender.getEmailAddress());
+            this.buildEmail(sender);
         } catch (MailException e) {
             log.error("Error while sending emiail", e);
         }
