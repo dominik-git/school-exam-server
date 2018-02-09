@@ -1,33 +1,63 @@
 package sk.bavaria.bavaria.model;
 
-public class User {
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.userdetails.UserDetails;
 
-    private String subject;
-    private String email;
-    private String message;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import java.util.Collection;
 
 
-    public String getSubject() {
-        return subject;
+@Entity
+public class User implements UserDetails {
+    @Id
+    @GeneratedValue
+    private Long id;
+    private String username;
+    private String password;
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_ADMIN");
     }
 
-    public void setSubject(String subject) {
-        this.subject = subject;
+    @Override
+    public String getPassword() {
+        return password;
     }
 
-    public String getEmailAddress() {
-        return email;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public void setEmailAddress(String email) {
-        this.email = email;
+    @Override
+    public String getUsername() {
+        return username;
     }
 
-    public String getMessage() {
-        return message;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }
