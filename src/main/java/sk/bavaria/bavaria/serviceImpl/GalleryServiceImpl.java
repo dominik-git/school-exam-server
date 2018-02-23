@@ -4,7 +4,7 @@ package sk.bavaria.bavaria.serviceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import sk.bavaria.bavaria.model.CarPhoto;
+import sk.bavaria.bavaria.model.Photo;
 import sk.bavaria.bavaria.repository.GalleryRepository;
 
 import java.util.List;
@@ -16,12 +16,12 @@ public class GalleryServiceImpl {
     private GalleryRepository galleryRepository;
 
 
-    public List<CarPhoto> getAllPhotos() {
+    public List<Photo> getAllPhotos() {
         return galleryRepository.findAll();
     }
 
     public void savePhoto(MultipartFile photo) throws Exception{
-        CarPhoto carPhoto = new CarPhoto();
+        Photo carPhoto = new Photo();
        carPhoto.setData(photo.getBytes());
         galleryRepository.save(carPhoto);
     }

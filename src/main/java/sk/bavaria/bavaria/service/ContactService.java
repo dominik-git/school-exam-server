@@ -34,7 +34,6 @@ public class ContactService {
         ContactInfoUtil.enrichContactInfoFromContactInfoDTO(contactInfoToUpdate, contactInfoDTO);
         contactRepository.save(contactInfoToUpdate);
 
-
     }
 
 }

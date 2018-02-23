@@ -10,7 +10,7 @@ public class Car {
     private Long id;
     private String brand;
     @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true, fetch = FetchType.LAZY)
-    private List<CarPhoto> photos;
+    private List<Photo> photos;
 
     public Long getId() {
         return id;
@@ -24,11 +24,11 @@ public class Car {
         this.brand = brand;
     }
 
-    public List<CarPhoto> getPhotos() {
+    public List<Photo> getPhotos() {
         return photos;
     }
 
-    public void setPhotos(List<CarPhoto> photos) {
+    public void setPhotos(List<Photo> photos) {
         this.photos = photos;
     }
 }

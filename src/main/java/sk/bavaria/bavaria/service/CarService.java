@@ -6,7 +6,7 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import sk.bavaria.bavaria.model.Car;
-import sk.bavaria.bavaria.model.CarPhoto;
+import sk.bavaria.bavaria.model.Photo;
 import sk.bavaria.bavaria.repository.CarReporitory;
 
 import java.util.Arrays;
@@ -25,7 +25,7 @@ public class CarService {
         Car car = new Car();
         car.setBrand(brand);
         if (photo != null) {
-            CarPhoto carPhoto = new CarPhoto();
+            Photo carPhoto = new Photo();
             carPhoto.setData(photo.getBytes());
             car.setPhotos(Arrays.asList(carPhoto));
         }
@@ -38,7 +38,7 @@ public class CarService {
     }
 
     @GetMapping(path = "/photos/{id}")
-    public List<CarPhoto> photos(@PathVariable(required = true) Long id) {
+    public List<Photo> photos(@PathVariable(required = true) Long id) {
         return carReporitory.findOne(id).getPhotos();
     }
     @GetMapping(path = "ping")

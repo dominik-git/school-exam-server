@@ -4,7 +4,7 @@ import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import sk.bavaria.bavaria.model.CarPhoto;
+import sk.bavaria.bavaria.model.Photo;
 import sk.bavaria.bavaria.serviceImpl.GalleryServiceImpl;
 
 import java.util.List;
@@ -23,7 +23,7 @@ public class GalleryService {
     }
 
     @GetMapping
-    public List<CarPhoto> getAll() {
+    public List<Photo> getAll() {
         return galleryService.getAllPhotos();
     }
 
