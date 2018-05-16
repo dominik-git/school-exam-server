@@ -20,18 +20,6 @@ public class ReviewServiceImpl {
     }
 
 
-    public List<Review> getAllApprovedReviews() {
-        return reviewRepository.findByApproved(true);
-    }
-
-
-    public void approveReview(long id) {
-        Review review = reviewRepository.findOne(id);
-        Objects.nonNull(review);
-        review.setApproved(true);
-        reviewRepository.save(review);
-    }
-
     public void saveReview(Review review) {
         reviewRepository.save(review);
     }

@@ -16,7 +16,7 @@ import java.util.List;
 public class ContactService {
 
     @Autowired
-    ContactRepository contactRepository;
+    private ContactRepository contactRepository;
 
     @PostMapping(consumes = "application/json", produces = "application/json")
     public void saveContactInfo(@RequestBody ContactInfo contactInfo) {
@@ -28,7 +28,7 @@ public class ContactService {
         return contactRepository.findAll();
     }
 
-    @PostMapping(value = "/updateInfo/{id}", consumes = "application/json", produces = "application/json")
+    @PutMapping(value = "/{id}", consumes = "application/json", produces = "application/json")
     public void updateContactInfo(@RequestBody ContactInfoDTO contactInfoDTO, @PathVariable(value = "id") Long id) {
         ContactInfo contactInfoToUpdate = contactRepository.findOne(id);
         ContactInfoUtil.enrichContactInfoFromContactInfoDTO(contactInfoToUpdate, contactInfoDTO);

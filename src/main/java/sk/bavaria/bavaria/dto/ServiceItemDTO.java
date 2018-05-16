@@ -1,38 +1,14 @@
-package sk.bavaria.bavaria.model;
+package sk.bavaria.bavaria.dto;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+public class ServiceItemDTO {
 
-@Entity
-public class PriceList {
-
-    @Id
-    @GeneratedValue
-    private Long id;
     private String service;
     private String serviceImage;
     private String description;
     private String price;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getService() {
         return service;
-    }
-
-    public String getServiceImage() {
-        return serviceImage;
-    }
-
-    public void setServiceImage(String serviceImage) {
-        this.serviceImage = serviceImage;
     }
 
     public void setService(String service) {
@@ -45,6 +21,14 @@ public class PriceList {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getServiceImage() {
+        return serviceImage;
+    }
+
+    public void setServiceImage(String serviceImage) {
+        this.serviceImage = serviceImage;
     }
 
     public String getPrice() {

@@ -39,14 +39,9 @@ public class HomePageService {
         return photoRepository.findAllByOrderByOrderingAsc();
     }
 
-//    @PostMapping(value = "/updateInfo/{id}", consumes = "application/json", produces = "application/json")
-//    public void updateHomePageSlider(@RequestBody HomePage HomePageSliderPhotos, @PathVariable(value = "id") Long id) {
-//        HomePage homePageSlider = homePageRepository.findOne(id);
-//        homePageSlider.setPhotos(HomePageSliderPhotos.getPhotos());
-//        homePageRepository.save(homePageSlider);
-//    }
 
-    @PostMapping(value = "/updatePhotos")
+
+    @PutMapping(value = "/updatePhotos")
     public void updatePhotoOrdering(@RequestBody List<PhotoUpdateDto> photoUpdateDtos) {
         for (PhotoUpdateDto photoUpdateDto : photoUpdateDtos) {
             Photo photo = photoRepository.findOne(photoUpdateDto.getId());

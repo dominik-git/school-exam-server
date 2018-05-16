@@ -14,7 +14,6 @@ public class Review {
     @Lob
     private String message;
     private float rating;
-    private boolean approved = false;
     private String date;
 
     public Long getId() {
@@ -47,14 +46,6 @@ public class Review {
 
     public void setRating(float rating) {
         this.rating = rating;
-    }
-
-    public boolean isApproved() {
-        return approved;
-    }
-
-    public void setApproved(boolean approved) {
-        this.approved = approved;
     }
 
     public String getDate() {

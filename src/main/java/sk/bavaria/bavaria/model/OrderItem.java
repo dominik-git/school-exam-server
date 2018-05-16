@@ -1,23 +1,25 @@
 package sk.bavaria.bavaria.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
-@Entity(name="orders")
-public class Order {
+@Entity(name = "orderItem")
+public class OrderItem {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private boolean approved = false;
-    private boolean archived = false;
-    private boolean newOrder = true;
+    @Enumerated(EnumType.STRING)
+    private Status status = Status.NEW;
     private String name;
     private String surname;
     private String emailAddress;
     private String phoneNumber;
-    private String serviceName;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "ORDERITEM_SERVISITEM",
+            joinColumns = @JoinColumn(name = "O_ID", referencedColumnName = "ID"),
+            inverseJoinColumns = @JoinColumn(name = "S_ID", referencedColumnName = "ID"))
+    private List<ServiceItem> serviceItems;
+    @Lob
     private String problemDescription;
     private String carBrand;
     private String carModel;
@@ -32,28 +34,12 @@ public class Order {
         this.id = id;
     }
 
-    public boolean isApproved() {
-        return approved;
+    public Status getStatus() {
+        return status;
     }
 
-    public void setApproved(boolean approved) {
-        this.approved = approved;
-    }
-
-    public boolean isArchived() {
-        return archived;
-    }
-
-    public void setArchived(boolean archived) {
-        this.archived = archived;
-    }
-
-    public boolean isNewOrder() {
-        return newOrder;
-    }
-
-    public void setNewOrder(boolean newOrder) {
-        this.newOrder = newOrder;
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
     public String getName() {
@@ -88,13 +74,7 @@ public class Order {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getServiceName() {
-        return serviceName;
-    }
 
-    public void setServiceName(String serviceName) {
-        this.serviceName = serviceName;
-    }
 
     public String getProblemDescription() {
         return problemDescription;
@@ -134,5 +114,13 @@ public class Order {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public List<ServiceItem> getServiceItems() {
+        return serviceItems;
+    }
+
+    public void setServiceItems(List<ServiceItem> serviceItems) {
+        this.serviceItems = serviceItems;
     }
 }
