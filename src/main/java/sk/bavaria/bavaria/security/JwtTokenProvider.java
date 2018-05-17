@@ -8,18 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import sk.bavaria.bavaria.service.UserService;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
+import java.util.Arrays;
 import java.util.Base64;
 import java.util.Date;
-import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
 @Component
 public class JwtTokenProvider {
@@ -40,7 +37,7 @@ public class JwtTokenProvider {
     public String createToken(String username) {
 
         Claims claims = Jwts.claims().setSubject(username);
-
+        claims.put("auth", Arrays.asList("ROLE_ADMIN"));
 
         Date now = new Date();
         Date validity = new Date(now.getTime() + validityInMilliseconds);
