@@ -48,15 +48,15 @@ public class UserService implements UserDetailsService {
         userRepository.save(u1);
     }
 
-//    @PostMapping("login")
-//    public String login(@RequestParam("username") String username, @RequestParam("password") String password) {
-//        try {
-//            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
-//            return jwtTokenProvider.createToken(username, userRepository.findByUsername(username).getRoles());
-//        } catch (AuthenticationException e) {
-//            throw new SecurityException("Invalid username/password supplied");
-//        }
-//    }
+    @PostMapping("login")
+    public String login(@RequestParam("username") String username, @RequestParam("password") String password) {
+        try {
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
+            return jwtTokenProvider.createToken(username);
+        } catch (AuthenticationException e) {
+            throw new SecurityException("Invalid username/password supplied");
+        }
+    }
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
