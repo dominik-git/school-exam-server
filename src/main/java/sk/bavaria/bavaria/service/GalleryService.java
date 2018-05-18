@@ -5,7 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import sk.bavaria.bavaria.model.Photo;
-import sk.bavaria.bavaria.serviceImpl.GalleryServiceImpl;
+import sk.bavaria.bavaria.repository.GalleryRepository;
+
 
 import java.util.List;
 
@@ -15,21 +16,23 @@ import java.util.List;
 public class GalleryService {
 
     @Autowired
-    private GalleryServiceImpl galleryService;
+    private GalleryRepository galleryRepository;
 
     @PostMapping
     public void create(@RequestParam MultipartFile photo) throws Exception{
-        galleryService.savePhoto(photo);
+        Photo carPhoto = new Photo();
+        carPhoto.setData(photo.getBytes());
+        galleryRepository.save(carPhoto);
     }
 
     @GetMapping
     public List<Photo> getAll() {
-        return galleryService.getAllPhotos();
+        return galleryRepository.findAll();
     }
 
     @DeleteMapping("/{id}")
-    public void deletePhoto(@PathVariable(value="id") int id){
-        galleryService.deletePhotoByID(id);
+    public void deletePhoto(@PathVariable(value="id") Long id){
+        galleryRepository.delete(id);
     }
 
 }

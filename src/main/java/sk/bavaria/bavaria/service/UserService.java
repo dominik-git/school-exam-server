@@ -1,5 +1,6 @@
 package sk.bavaria.bavaria.service;
 
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -10,6 +11,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import sk.bavaria.bavaria.model.User;
 import sk.bavaria.bavaria.repository.UserRepository;
@@ -18,6 +20,8 @@ import sk.bavaria.bavaria.security.JwtTokenProvider;
 import javax.annotation.PostConstruct;
 
 @Service
+@RequestMapping("/user")
+@Api(value="/user", description="Basic crud over pricelist entity.")
 public class UserService implements UserDetailsService {
 
     @Autowired
@@ -37,11 +41,11 @@ public class UserService implements UserDetailsService {
     @PostConstruct
     public void init() {
         User u = new User();
-        u.setUsername("Admin");
+        u.setUsername("admin");
         u.setPassword(passwordEncoder.encode("admin"));
 
         User u1 = new User();
-        u1.setUsername("Admin1");
+        u1.setUsername("admin1");
         u1.setPassword(passwordEncoder.encode("admin1"));
 
         userRepository.save(u);
