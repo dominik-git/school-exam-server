@@ -13,13 +13,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import sk.bavaria.bavaria.model.User;
 import sk.bavaria.bavaria.repository.UserRepository;
 import sk.bavaria.bavaria.security.JwtTokenProvider;
 
 import javax.annotation.PostConstruct;
 
-@Service
+@RestController
 @RequestMapping("/user")
 @Api(value="/user", description="Basic crud over pricelist entity.")
 public class UserService implements UserDetailsService {
