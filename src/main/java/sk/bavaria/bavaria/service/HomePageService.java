@@ -33,8 +33,8 @@ public class HomePageService {
     }
 
 
-    @DeleteMapping
-    public void create(@RequestParam(required = true) Long id) throws Exception {
+    @DeleteMapping("/{id}")
+    public void deletePhoto(@PathVariable(value="id") Long id) throws Exception {
         photoRepository.delete(id);
     }
 
