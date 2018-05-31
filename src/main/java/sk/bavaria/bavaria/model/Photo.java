@@ -11,6 +11,9 @@ public class Photo {
     private Integer ordering;
     @Lob
     private byte[] data;
+    @Enumerated(EnumType.STRING)
+    private PhotoType type;
+
 
     public Long getId() {
         return id;
@@ -30,5 +33,13 @@ public class Photo {
 
     public void setOrdering(Integer ordering) {
         this.ordering = ordering;
+    }
+
+    public PhotoType getType() {
+        return type;
+    }
+
+    public void setType(PhotoType type) {
+        this.type = type;
     }
 }
