@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import sk.bavaria.bavaria.model.Review;
 import sk.bavaria.bavaria.repository.ReviewRepository;
-import sk.bavaria.bavaria.serviceImpl.ReviewServiceImpl;
 
 import java.util.List;
 
