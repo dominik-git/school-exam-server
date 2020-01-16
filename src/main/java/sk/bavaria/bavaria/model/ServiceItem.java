@@ -3,6 +3,7 @@ package sk.bavaria.bavaria.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 
 @Entity
 public class ServiceItem {
@@ -12,6 +13,7 @@ public class ServiceItem {
     private Long id;
     private String service;
     private String serviceImage;
+    @Lob
     private String description;
     private String price;
 

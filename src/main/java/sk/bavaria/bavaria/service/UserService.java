@@ -9,7 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,7 +22,7 @@ import javax.annotation.PostConstruct;
 
 @RestController
 @RequestMapping("/user")
-@Api(value="/user", description="Basic crud over pricelist entity.")
+@Api(value = "/user", description = "Basic crud over pricelist entity.")
 public class UserService implements UserDetailsService {
 
     @Autowired
@@ -38,19 +38,24 @@ public class UserService implements UserDetailsService {
     private AuthenticationManager authenticationManager;
 
 
-
     @PostConstruct
+    @Transactional
     public void init() {
-        User u = new User();
-        u.setUsername("admin");
-        u.setPassword(passwordEncoder.encode("admin"));
+        if (userRepository.findByUsername("admin") == null) {
 
-        User u1 = new User();
-        u1.setUsername("admin1");
-        u1.setPassword(passwordEncoder.encode("admin1"));
 
-        userRepository.save(u);
-        userRepository.save(u1);
+            User u = new User();
+            u.setUsername("admin");
+            u.setPassword(passwordEncoder.encode("admin"));
+
+            User u1 = new User();
+            u1.setUsername("admin1");
+            u1.setPassword(passwordEncoder.encode("admin1"));
+
+
+            userRepository.save(u);
+            userRepository.save(u1);
+        }
     }
 
     @PostMapping("login")

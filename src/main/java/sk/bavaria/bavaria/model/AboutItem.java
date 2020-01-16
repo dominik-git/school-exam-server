@@ -11,8 +11,8 @@ public class AboutItem {
     private String description;
     private String title;
     private String secondTitle;
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Photo photo;
+    @Lob
+    private byte[] photoData;
 
     public String getDescription() {
         return description;
@@ -38,12 +38,12 @@ public class AboutItem {
         this.secondTitle = secondTitle;
     }
 
-    public Photo getPhoto() {
-        return photo;
+    public byte[] getPhotoData() {
+        return photoData;
     }
 
-    public void setPhoto(Photo photo) {
-        this.photo = photo;
+    public void setPhotoData(byte[] photoData) {
+        this.photoData = photoData;
     }
 
     public Long getId() {
